@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
+
+
 * {
   box-sizing: border-box;
 }
@@ -60,3 +62,9 @@ canvas {
   margin-left: auto;
 }
 
+.logo {
+  text-align: center;
+  color: white;
+  font-family: 'Poppins','Segoe UI', Tahoma, Verdana, sans-serif;
+  font-size: 50px;
+}
