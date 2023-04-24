@@ -1,29 +1,49 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
 * {
   box-sizing: border-box;
 }
+
 body {
-  background-color: #f5f5f5;
+  background-color: #9168f8;
   font-family: "Roboto", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
   margin: 0;
 }
-canvas {
-  border: 2px solid steelblue;
+
+.container {
+  display:flex;
+  flex-direction:column-reverse;
+  align-items:center;
+  justify-content:center;
+  height: 100vh;
 }
+
+.canvas-container {
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 25px;
+  margin: 2rem 0;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+canvas {
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
 .toolbox {
-  background-color: steelblue;
-  border: 1px solid slateblue;
+  background-color: #5147dd;
+  border: 1px solid #000000;
+  border-radius: 10px;
   display: flex;
   width: 804px;
   padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .toolbox > * {
-  background-color: #fff;
+  background-color: #ffffff;
   border: none;
   display: inline-flex;
   align-items: center;
@@ -33,7 +53,10 @@ canvas {
   width: 50px;
   margin: 0.25rem;
   padding: 0.25rem;
+  border-radius: 10px;
 }
+
 .toolbox > *:last-child {
   margin-left: auto;
 }
+
