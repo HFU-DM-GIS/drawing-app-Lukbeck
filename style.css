@@ -79,9 +79,15 @@ canvas {
   margin-left: auto;
 }
 
-.logo {
-  text-align: center;
-  color: white;
-  font-family: 'Poppins','Segoe UI', Tahoma, Verdana, sans-serif;
-  font-size: 50px;
+.buttons{
+
+  background-color: #ffffff;
+  color: rgb(106, 106, 106);
+
+}
+
+.buttons:hover{
+background-color: black;
+color: #ffffff;
+
 }

@@ -5,7 +5,7 @@ const sizeEL = document.getElementById("size");
 const colorEl = document.getElementById("color");
 const clearEl = document.getElementById("clear");
 const ctx = canvas.getContext("2d");
-
+const randomColorBtn = document.getElementById("randomColor")
 let size = 10;
 let isPressed = false;
 let color = colorEl.value;
@@ -83,6 +83,21 @@ colorEl.addEventListener("change", (e) => {
 
 clearEl.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+randomColorBtn.addEventListener("click", () => {
+  const randomColor = getRandomColor();
+  colorEl.value = randomColor;
+ color = randomColor;
 });
 
 updateSizeOnScreen();
