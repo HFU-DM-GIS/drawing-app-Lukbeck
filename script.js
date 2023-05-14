@@ -5,6 +5,25 @@ const sizeEL = document.getElementById("size");
 const colorEl = document.getElementById("color");
 const clearEl = document.getElementById("clear");
 const ctx = canvas.getContext("2d");
+var url = "http://colormind.io/api/";
+var data = {
+	model : "default",
+	input : [[44,43,44],[90,83,82],"N","N","N"]
+} // variables/constants
+
+var http = new XMLHttpRequest();
+
+http.onreadystatechange = function() {
+	if(http.readyState == 4 && http.status == 200) {
+		var palette = JSON.parse(http.responseText).result;
+	}
+} // onreadystatechange
+
+http.open("POST", url, true);
+http.send(JSON.stringify(data));
+
+// [[42, 41, 48], [90, 83, 84], [191, 157, 175], [188, 138, 125], [215, 170, 66]]
+// note that the input colors have changed as well, by a small amount
 
 let size = 10;
 let isPressed = false;
@@ -16,13 +35,13 @@ canvas.addEventListener("mousedown", (e) => {
   isPressed = true;
   x = e.offsetX;
   y = e.offsetY;
-});
+}); // sets the mouse down
 
 canvas.addEventListener("mouseup", (e) => {
   isPressed = false;
   x = undefined;
   y = undefined;
-});
+}); // sets the mouse up
 
 canvas.addEventListener("mousemove", (e) => {
   if (isPressed) {
@@ -33,20 +52,20 @@ canvas.addEventListener("mousemove", (e) => {
     x = x2;
     y = y2;
   }
-});
+}); // sets the mouse move
 
 canvas.addEventListener("mouseleave", (e) => {
   isPressed = false;
   x = undefined;
   y = undefined;
-});
+}); // sets the mouse leave
 
 function drawCircle(x, y) {
   ctx.beginPath();
   ctx.arc(x, y, size, 0, Math.PI * 2);
   ctx.fillStyle = color;
   ctx.fill();
-}
+} // draws a circle
 
 function drawLine(x1, y1, x2, y2) {
   ctx.beginPath();
@@ -55,11 +74,11 @@ function drawLine(x1, y1, x2, y2) {
   ctx.strokeStyle = color;
   ctx.lineWidth = size * 2;
   ctx.stroke();
-}
+} // draws a line
 
 function updateSizeOnScreen() {
   sizeEL.innerText = size;
-}
+} // updates the size
 
 increaseBtn.addEventListener("click", () => {
   size += 5;
@@ -67,7 +86,7 @@ increaseBtn.addEventListener("click", () => {
     size = 100;
   }
   updateSizeOnScreen();
-});
+}); // increases the size
 
 decreaseBtn.addEventListener("click", () => {
   size -= 5;
@@ -75,15 +94,15 @@ decreaseBtn.addEventListener("click", () => {
     size = 5;
   }
   updateSizeOnScreen();
-});
+}); // sets the size
 
 colorEl.addEventListener("change", (e) => {
   color = e.target.value;
-});
+}); // sets the color
 
 clearEl.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-});
+}); // clears the canvas
 
 updateSizeOnScreen();
 
