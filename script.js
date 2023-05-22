@@ -85,5 +85,12 @@ clearEl.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
 
+window.onload = function() {
+  var button = document.getElementById('button');
+  button.addEventListener('mouseover', function() {
+    button.style.cursor ='grosshair'; 
+  });
+};
+
 updateSizeOnScreen();
 
