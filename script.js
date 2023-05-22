@@ -5,6 +5,7 @@ const sizeEL = document.getElementById("size");
 const colorEl = document.getElementById("color");
 const clearEl = document.getElementById("clear");
 const ctx = canvas.getContext("2d");
+
 var url = "http://colormind.io/api/";
 var data = {
 	model : "default",
