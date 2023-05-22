@@ -85,3 +85,7 @@ canvas {
   font-family: 'Poppins','Segoe UI', Tahoma, Verdana, sans-serif;
   font-size: 50px;
 }
+
+.button {
+cursor: pointer;
+}
