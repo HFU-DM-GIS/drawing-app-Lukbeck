@@ -91,6 +91,7 @@ function getRandomColor() {
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
+
   return color;
 }
 
@@ -98,7 +99,17 @@ randomColorBtn.addEventListener("click", () => {
   const randomColor = getRandomColor();
   colorEl.value = randomColor;
  color = randomColor;
+ document.body.style.backgroundColor = randomColor;
 });
+
+window.onload = function () {
+
+  var button = getElementById('button');
+  button.addEventListener('mouseover', function(){
+button.style.cursor = 'grosshair';
+  })
+
+}
 
 updateSizeOnScreen();
 
