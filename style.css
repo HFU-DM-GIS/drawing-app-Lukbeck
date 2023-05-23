@@ -18,6 +18,7 @@ body {
   align-items:center;
   justify-content:center;
   height: 100vh;
+
 }
 
 .canvas-container {
@@ -44,6 +45,8 @@ canvas {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+
+
 .toolbox > * {
   background-color: #995269;
   border: 1px solid #000000;
@@ -58,6 +61,29 @@ canvas {
   border-radius: 10px;
 }
 
+#colorbuttons  {
+  width: auto;
+  border-radius: 0;
+  background-color: #AA919E;
+  border: none;
+  margin-left: 0%;
+  padding-left: 0%;
+}
+
+#colorbuttons > * {
+  height: 50px;
+  width: 50px;
+  margin: 0.55rem;
+  padding: 0.25rem;
+  border-radius: 10px;
+  background-color: #995269;
+  border: 1px solid #000000;
+
+}
+
+
+
+
 .toolbox > *:last-child {
   margin-left: auto;
 }
@@ -70,5 +96,4 @@ canvas {
   padding: 2rem;
 
 
-  
 }
