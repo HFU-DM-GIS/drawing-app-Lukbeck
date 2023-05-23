@@ -33,6 +33,7 @@ body {
 canvas {
   border: 1px solid #000000;
   border-radius: 10px;
+  cursor:crosshair;
 }
 
 .toolbox {
@@ -59,6 +60,7 @@ canvas {
   margin: 0.55rem;
   padding: 0.25rem;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 #colorbuttons  {
@@ -68,6 +70,7 @@ canvas {
   border: none;
   margin-left: 0%;
   padding-left: 0%;
+  
 }
 
 #colorbuttons > * {
@@ -78,6 +81,7 @@ canvas {
   border-radius: 10px;
   background-color: #995269;
   border: 1px solid #000000;
+  cursor: pointer;
 
 }
 

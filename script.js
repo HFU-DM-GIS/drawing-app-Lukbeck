@@ -5,7 +5,14 @@ const sizeEL = document.getElementById("size");
 const colorEl = document.getElementById("color");
 const clearEl = document.getElementById("clear");
 const ctx = canvas.getContext("2d");
+const randomColorBtn = document.getElementById("randomColor");
 let selectedColor = colorEl.value;
+let size = 10;
+let isPressed = false;
+let x;
+let y;
+
+
 
 var url = "http://colormind.io/api/";
 var data = {
@@ -40,10 +47,7 @@ http.send(JSON.stringify(data));
 // [[42, 41, 48], [90, 83, 84], [191, 157, 175], [188, 138, 125], [215, 170, 66]]
 // note that the input colors have changed as well, by a small amount
 
-let size = 10;
-let isPressed = false;
-let x;
-let y;
+
 
 canvas.addEventListener("mousedown", (e) => {
   isPressed = true;
@@ -117,6 +121,27 @@ colorEl.addEventListener("change", (e) => {
 clearEl.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }); // clears the canvas
+
+function getRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+
+  return color;
+
+  //sets a random color
+}
+
+randomColorBtn.addEventListener("click", () => {
+  const randomColor = getRandomColor();
+  colorEl.value = randomColor;
+  selectedColor = randomColor;
+ document.body.style.backgroundColor = randomColor;
+});
+
+
 
 updateSizeOnScreen();
 
