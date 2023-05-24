@@ -93,6 +93,9 @@ cursor:no-drop;
 
 }
 
+#save {
+  cursor: progress;
+}
 
 .toolbox > *:last-child {
   margin-left: auto;
