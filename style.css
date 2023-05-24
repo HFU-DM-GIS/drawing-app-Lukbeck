@@ -37,7 +37,7 @@ canvas {
 }
 
 .toolbox {
-  background-color: #AA919E;
+  background-color: #88acc1;
   border: 1px solid #000000;
   border-radius: 10px;
   display: flex;
@@ -49,7 +49,7 @@ canvas {
 
 
 .toolbox > * {
-  background-color: #995269;
+  background-color: #b4d5d7;
   border: 1px solid #000000;
   display: inline-flex;
   align-items: center;
@@ -60,13 +60,13 @@ canvas {
   margin: 0.55rem;
   padding: 0.25rem;
   border-radius: 10px;
-  cursor: pointer;
+  cursor:pointer;
 }
 
 #colorbuttons  {
   width: auto;
   border-radius: 0;
-  background-color: #AA919E;
+  background-color: #88acc1;
   border: none;
   margin-left: 0%;
   padding-left: 0%;
@@ -78,7 +78,7 @@ canvas {
   width: 50px;
   margin: 0.55rem;
   padding: 0.25rem;
-  border-radius: 10px;
+  border-radius: 50px;
   background-color: #995269;
   border: 1px solid #000000;
   cursor: pointer;
@@ -89,7 +89,7 @@ canvas {
 
 
 .toolbox > *:last-child {
-  margin-left: auto;
+  margin-left:auto;
 }
 
 .logo {
