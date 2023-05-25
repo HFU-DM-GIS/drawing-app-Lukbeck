@@ -6,6 +6,7 @@ const colorEl = document.getElementById("color");
 const clearEl = document.getElementById("clear");
 const ctx = canvas.getContext("2d");
 const randomColorBtn = document.getElementById("randomColor");
+let saveBtn = document.getElementById("save");
 let selectedColor = colorEl.value;
 let size = 10;
 let isPressed = false;
@@ -141,6 +142,14 @@ randomColorBtn.addEventListener("click", () => {
  document.body.style.backgroundColor = randomColor;
 });
 
+saveBtn.addEventListener("click" , () => {  
+  let data = canvas.toDataURL("img/png");
+  let pic = document.createElement("a");
+  pic.href = data;
+  pic.download ="sketch.png"
+  pic.click();
+
+})
 
 
 updateSizeOnScreen();

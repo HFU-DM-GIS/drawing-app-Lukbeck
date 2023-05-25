@@ -9,6 +9,7 @@
 body {
   background-color: #2B3B5B;
   font-family: "Helvetica", sans-serif;
+ 
   margin: 0;
 }
 
@@ -38,9 +39,8 @@ canvas {
 }
 
 .toolbox {
-
   background-color: #8fb3be;
-  border: 1px solid #000000;
+  border: 3px solid #ffffff;
   border-radius: 30px;
   display: flex;
   width: 840px;
@@ -85,7 +85,6 @@ canvas {
 
   background-color: #8fb3be;
   border: 3px solid #ffffff;
-
   cursor: pointer;
 
 }
@@ -110,3 +109,5 @@ cursor:no-drop;
   font-size: 70px;
   padding: 0rem;
 }
+
+
