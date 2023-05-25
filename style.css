@@ -95,6 +95,7 @@ cursor:no-drop;
 }
 
 #save {
+  font-size: small;
   cursor: progress;
 }
 
@@ -102,6 +103,14 @@ cursor:no-drop;
   margin-left:auto;
 }
 
+
+.text{
+  position: relative;
+  top:340px;
+text-align: center;
+color:#ffffff;
+  font-size: 24px;
+}
 .logo {
   text-align: center;
   color: white;
