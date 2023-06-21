@@ -7,18 +7,29 @@ const clearEl = document.getElementById("clear");
 const ctx = canvas.getContext("2d");
 const randomColorBtn = document.getElementById("randomColor");
 let saveBtn = document.getElementById("save");
-let selectedColor = colorEl.value;
-let size = 10;
+let selectedColor = localStorage.getItem("selectedColor") || colorEl.value;
+let size = parseInt(localStorage.getItem("size")) || 10;
 let isPressed = false;
 let x;
 let y;
 
+function saveData() {
+  localStorage.setItem("backgroundColor", selectedColor);
+  localStorage.setItem("selectedColor", selectedColor);
+  localStorage.setItem("size", size.toString());
+}
 
+function loadData() {
+  selectedColor = localStorage.getItem("selectedColor") || colorEl.value;
+  size = parseInt(localStorage.getItem("size")) || 10;
+  updateSizeOnScreen();
+}
 
 var url = "http://colormind.io/api/";
 var data = {
 	  model : "default" 
 } // variables/constants
+
 
 var http = new XMLHttpRequest();
 
@@ -35,6 +46,7 @@ http.onreadystatechange = function() {
       button.addEventListener("mousedown",(e) => { 
       colorEl.value= hexcolor 
       selectedColor=hexcolor
+      saveData();
     })
       toolbox.appendChild (button) ; 
     }
@@ -97,7 +109,8 @@ function drawLine(x1, y1, x2, y2) {
 
 function updateSizeOnScreen() {
   sizeEL.innerText = size;
-} // updates the size
+  saveData(); // Speichern der Größe nach der Aktualisierung
+}
 
 increaseBtn.addEventListener("click", () => {
   size += 5;
@@ -115,9 +128,14 @@ decreaseBtn.addEventListener("click", () => {
   updateSizeOnScreen();
 }); // sets the size
 
+window.addEventListener("load", () => {
+  loadData(); // Laden der gespeicherten Daten
+});
+
 colorEl.addEventListener("change", (e) => {
   selectedColor = e.target.value;
-}); // sets the color
+  saveData(); // Speichern der ausgewählten Farbe
+});
 
 clearEl.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -129,7 +147,7 @@ function getRandomColor() {
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
-
+  
   return color;
 
   //sets a random color
@@ -139,7 +157,9 @@ randomColorBtn.addEventListener("click", () => {
   const randomColor = getRandomColor();
   colorEl.value = randomColor;
   selectedColor = randomColor;
+  
  document.body.style.backgroundColor = randomColor;
+ saveData();
 });
 
 saveBtn.addEventListener("click" , () => {  
