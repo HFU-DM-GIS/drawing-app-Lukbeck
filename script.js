@@ -4,6 +4,7 @@ const decreaseBtn = document.getElementById("decrease");
 const sizeEL = document.getElementById("size");
 const colorEl = document.getElementById("color");
 const clearEl = document.getElementById("clear");
+const saveC = document.getElementById("savecanvas");
 const ctx = canvas.getContext("2d");
 const randomColorBtn = document.getElementById("randomColor");
 let saveBtn = document.getElementById("save");
@@ -61,6 +62,15 @@ http.send(JSON.stringify(data));
 // note that the input colors have changed as well, by a small amount
 
 
+if(localStorage.getItem("imgCanvas") != null){
+    var img = new Image();
+    img.onload = function(){
+      ctx.drawImage(img,0, 0)
+    }
+    img.src = localStorage.getItem("imgCanvas");  
+
+};
+
 
 canvas.addEventListener("mousedown", (e) => {
   isPressed = true;
@@ -106,6 +116,21 @@ function drawLine(x1, y1, x2, y2) {
   ctx.lineWidth = size * 2;
   ctx.stroke();
 } // draws a line
+ 
+saveC.addEventListener("click", () => {
+
+  if(typeof(localStorage) != null){
+    localStorage.setItem("imgCanvas", canvas.toDataURL())
+  window.alert(localStorage.getItem("imgCanvas"));
+  
+  }else{
+    window.alert("Dieser Browser unterstützt kein local storage");
+  }
+
+
+})
+
+
 
 function updateSizeOnScreen() {
   sizeEL.innerText = size;
@@ -140,6 +165,12 @@ colorEl.addEventListener("change", (e) => {
 clearEl.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }); // clears the canvas
+
+
+
+
+
+
 
 function getRandomColor() {
   const letters = "0123456789ABCDEF";
