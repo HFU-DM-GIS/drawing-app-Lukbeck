@@ -15,7 +15,6 @@ let x;
 let y;
 
 function saveData() {
-  localStorage.setItem("backgroundColor", selectedColor);
   localStorage.setItem("selectedColor", selectedColor);
   localStorage.setItem("size", size.toString());
 }
@@ -24,10 +23,12 @@ function loadData() {
   selectedColor = localStorage.getItem("selectedColor") || colorEl.value;
   size = parseInt(localStorage.getItem("size")) || 10;
   updateSizeOnScreen();
+  updateColorOnScreen();
+
 }
 
-var url = "http://colormind.io/api/";
-var data = {
+let url = "http://colormind.io/api/";
+let data = {
 	  model : "default" 
 } // variables/constants
 
@@ -63,7 +64,7 @@ http.send(JSON.stringify(data));
 
 
 if(localStorage.getItem("imgCanvas") != null){
-    var img = new Image();
+    let img = new Image();
     img.onload = function(){
       ctx.drawImage(img,0, 0)
     }
@@ -76,6 +77,7 @@ canvas.addEventListener("mousedown", (e) => {
   isPressed = true;
   x = e.offsetX;
   y = e.offsetY;
+  drawCircle(x,y);
 }); // sets the mouse down
 
 canvas.addEventListener("mouseup", (e) => {
@@ -121,7 +123,7 @@ saveC.addEventListener("click", () => {
 
   if(typeof(localStorage) != null){
     localStorage.setItem("imgCanvas", canvas.toDataURL())
-  window.alert(localStorage.getItem("imgCanvas"));
+  //window.alert(localStorage.getItem("imgCanvas"));
   
   }else{
     window.alert("Dieser Browser unterstützt kein local storage");
@@ -131,9 +133,12 @@ saveC.addEventListener("click", () => {
 })
 
 
-
 function updateSizeOnScreen() {
   sizeEL.innerText = size;
+  saveData(); // Speichern der Größe nach der Aktualisierung
+}
+function updateColorOnScreen() {
+  colorEL.value = selectedColor;
   saveData(); // Speichern der Größe nach der Aktualisierung
 }
 
@@ -159,17 +164,13 @@ window.addEventListener("load", () => {
 
 colorEl.addEventListener("change", (e) => {
   selectedColor = e.target.value;
-  saveData(); // Speichern der ausgewählten Farbe
+  saveData();
+  updateColorOnScreen(); // Speichern der ausgewählten Farbe
 });
 
 clearEl.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }); // clears the canvas
-
-
-
-
-
 
 
 function getRandomColor() {
@@ -203,5 +204,4 @@ saveBtn.addEventListener("click" , () => {
 })
 
 
-updateSizeOnScreen();
-
+loadData();
