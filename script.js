@@ -4,21 +4,33 @@ const decreaseBtn = document.getElementById("decrease");
 const sizeEL = document.getElementById("size");
 const colorEl = document.getElementById("color");
 const clearEl = document.getElementById("clear");
+const saveC = document.getElementById("savecanvas");
 const ctx = canvas.getContext("2d");
 const randomColorBtn = document.getElementById("randomColor");
 let saveBtn = document.getElementById("save");
-let selectedColor = colorEl.value;
-let size = 10;
+let selectedColor = localStorage.getItem("selectedColor") || colorEl.value;
+let size = parseInt(localStorage.getItem("size")) || 10;
 let isPressed = false;
 let x;
 let y;
 
+function saveData() {
+  localStorage.setItem("backgroundColor", selectedColor);
+  localStorage.setItem("selectedColor", selectedColor);
+  localStorage.setItem("size", size.toString());
+}
 
+function loadData() {
+  selectedColor = localStorage.getItem("selectedColor") || colorEl.value;
+  size = parseInt(localStorage.getItem("size")) || 10;
+  updateSizeOnScreen();
+}
 
 var url = "http://colormind.io/api/";
 var data = {
 	  model : "default" 
 } // variables/constants
+
 
 var http = new XMLHttpRequest();
 
@@ -35,6 +47,7 @@ http.onreadystatechange = function() {
       button.addEventListener("mousedown",(e) => { 
       colorEl.value= hexcolor 
       selectedColor=hexcolor
+      saveData();
     })
       toolbox.appendChild (button) ; 
     }
@@ -48,6 +61,15 @@ http.send(JSON.stringify(data));
 // [[42, 41, 48], [90, 83, 84], [191, 157, 175], [188, 138, 125], [215, 170, 66]]
 // note that the input colors have changed as well, by a small amount
 
+
+if(localStorage.getItem("imgCanvas") != null){
+    var img = new Image();
+    img.onload = function(){
+      ctx.drawImage(img,0, 0)
+    }
+    img.src = localStorage.getItem("imgCanvas");  
+
+};
 
 
 canvas.addEventListener("mousedown", (e) => {
@@ -94,10 +116,26 @@ function drawLine(x1, y1, x2, y2) {
   ctx.lineWidth = size * 2;
   ctx.stroke();
 } // draws a line
+ 
+saveC.addEventListener("click", () => {
+
+  if(typeof(localStorage) != null){
+    localStorage.setItem("imgCanvas", canvas.toDataURL())
+  window.alert(localStorage.getItem("imgCanvas"));
+  
+  }else{
+    window.alert("Dieser Browser unterstützt kein local storage");
+  }
+
+
+})
+
+
 
 function updateSizeOnScreen() {
   sizeEL.innerText = size;
-} // updates the size
+  saveData(); // Speichern der Größe nach der Aktualisierung
+}
 
 increaseBtn.addEventListener("click", () => {
   size += 5;
@@ -115,13 +153,24 @@ decreaseBtn.addEventListener("click", () => {
   updateSizeOnScreen();
 }); // sets the size
 
+window.addEventListener("load", () => {
+  loadData(); // Laden der gespeicherten Daten
+});
+
 colorEl.addEventListener("change", (e) => {
   selectedColor = e.target.value;
-}); // sets the color
+  saveData(); // Speichern der ausgewählten Farbe
+});
 
 clearEl.addEventListener("click", () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }); // clears the canvas
+
+
+
+
+
+
 
 function getRandomColor() {
   const letters = "0123456789ABCDEF";
@@ -129,7 +178,7 @@ function getRandomColor() {
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
-
+  
   return color;
 
   //sets a random color
@@ -139,7 +188,9 @@ randomColorBtn.addEventListener("click", () => {
   const randomColor = getRandomColor();
   colorEl.value = randomColor;
   selectedColor = randomColor;
+  
  document.body.style.backgroundColor = randomColor;
+ saveData();
 });
 
 saveBtn.addEventListener("click" , () => {  
