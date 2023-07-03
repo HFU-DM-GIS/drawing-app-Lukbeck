@@ -1,13 +1,15 @@
-const canvas = document.getElementByClass("canvas");
-const increaseBtn = document.getElementByClass("increase");
-const decreaseBtn = document.getElementByClass("decrease");
-const sizeEL = document.getElementByClass("size");
-const colorEl = document.getElementByClass("color");
-const clearEl = document.getElementByClass("clear");
-const saveC = document.getElementByClass("savecanvas");
+
+
+const canvas = document.getElementById("canvas");
+const increaseBtn = document.getElementById("increase");
+const decreaseBtn = document.getElementById("decrease");
+const sizeEL = document.getElementById("size");
+const colorEl = document.getElementById("color");
+const clearEl = document.getElementById("clear");
+const saveC = document.getElementById("savecanvas");
 const ctx = canvas.getContext("2d");
-const randomColorBtn = document.getElementByClass("randomColor");
-let saveBtn = document.getElementByClass("save");
+const randomColorBtn = document.getElementById("randomColor");
+let saveBtn = document.getElementById("save");
 let selectedColor = localStorage.getItem("selectedColor") || colorEl.value;
 let size = parseInt(localStorage.getItem("size")) || 10;
 let isPressed = false;
@@ -38,7 +40,7 @@ let http = new XMLHttpRequest();
 http.onreadystatechange = function() {
 	if(http.readyState == 4 && http.status == 200) {
 		let palette = JSON.parse(http.responseText).result;
-    let toolbox = document.getElementByClass("colorbuttons"); 
+    let toolbox = document.getElementById("colorbuttons"); 
     for (color of palette) { 
       let button = document.createElement ("button");
       const hexcolor = "#" + color[0].toString(16)
@@ -58,9 +60,6 @@ http.onreadystatechange = function() {
 
 http.open("POST", url, true);
 http.send(JSON.stringify(data));
-
-// [[42, 41, 48], [90, 83, 84], [191, 157, 175], [188, 138, 125], [215, 170, 66]]
-// note that the input colors have changed as well, by a small amount
 
 
 if(localStorage.getItem("imgCanvas") != null){

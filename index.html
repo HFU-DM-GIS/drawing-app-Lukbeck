@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,24 +9,24 @@
     <title>Drawing App</title>
   </head>
   <body>
-
+    
     <div class="header">
       <h1 class="logo">Drawing App</h1>
     </div>
     <div class="container">
       <div class="canvas-container">
-        <canvas class="canvas" width="800" height="700"></canvas>
+        <canvas id="canvas" width="800" height="700"></canvas>
       </div>
       <div class="toolbox" >
-        <button class="decrease">-</button>
-        <span class="size">10</span>
-        <button class="increase">+</button>
-        <input type="color" class="color" />
-        <button class="randomColor">?</button>
-        <button class="savecanvas">C</button>
-        <div  class="colorbuttons">  </div>
-        <button class="save">S</button>
-        <button class="clear">X</button>
+        <button id="decrease">-</button>
+        <span id="size">10</span>
+        <button id="increase">+</button>
+        <input type="color" id="color" />
+        <button id="randomColor">?</button>
+        <button id="savecanvas">Save</button>
+        <div  id="colorbuttons">  </div>
+        <button id="save">Picture</button>
+        <button id="clear">X</button>
 
       </div>
 
