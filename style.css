@@ -66,7 +66,7 @@ canvas {
   cursor:pointer;
 }
 
-#colorbuttons  {
+.colorbuttons  {
   width: auto;
   border-radius: 0;
   background-color: #8fb3be;
@@ -76,7 +76,7 @@ canvas {
   
 }
 
-#colorbuttons > * {
+.colorbuttons > * {
   height: 50px;
   width: 50px;
   margin: 0.55rem;
@@ -89,12 +89,12 @@ canvas {
 
 }
 
-#size {
+.size {
 cursor:no-drop;
 
 }
 
-#save {
+.save {
   font-size: small;
   cursor: progress;
 }

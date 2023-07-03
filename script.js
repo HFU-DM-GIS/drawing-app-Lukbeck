@@ -1,13 +1,13 @@
-const canvas = document.getElementById("canvas");
-const increaseBtn = document.getElementById("increase");
-const decreaseBtn = document.getElementById("decrease");
-const sizeEL = document.getElementById("size");
-const colorEl = document.getElementById("color");
-const clearEl = document.getElementById("clear");
-const saveC = document.getElementById("savecanvas");
+const canvas = document.getElementByClass("canvas");
+const increaseBtn = document.getElementByClass("increase");
+const decreaseBtn = document.getElementByClass("decrease");
+const sizeEL = document.getElementByClass("size");
+const colorEl = document.getElementByClass("color");
+const clearEl = document.getElementByClass("clear");
+const saveC = document.getElementByClass("savecanvas");
 const ctx = canvas.getContext("2d");
-const randomColorBtn = document.getElementById("randomColor");
-let saveBtn = document.getElementById("save");
+const randomColorBtn = document.getElementByClass("randomColor");
+let saveBtn = document.getElementByClass("save");
 let selectedColor = localStorage.getItem("selectedColor") || colorEl.value;
 let size = parseInt(localStorage.getItem("size")) || 10;
 let isPressed = false;
@@ -30,17 +30,17 @@ function loadData() {
 let url = "http://colormind.io/api/";
 let data = {
 	  model : "default" 
-} // variables/constants
+} // letiables/constants
 
 
-var http = new XMLHttpRequest();
+let http = new XMLHttpRequest();
 
 http.onreadystatechange = function() {
 	if(http.readyState == 4 && http.status == 200) {
-		var palette = JSON.parse(http.responseText).result;
-    var toolbox = document.getElementById("colorbuttons"); 
+		let palette = JSON.parse(http.responseText).result;
+    let toolbox = document.getElementByClass("colorbuttons"); 
     for (color of palette) { 
-      var button = document.createElement ("button");
+      let button = document.createElement ("button");
       const hexcolor = "#" + color[0].toString(16)
       + color[1].toString(16) + color[2].toString(16);
       button.style.background = hexcolor
